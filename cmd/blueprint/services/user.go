@@ -1,0 +1,20 @@
+package services
+
+import "github.com/jmandt/go-swagger-container/cmd/blueprint/models"
+
+type userDAO interface {
+	Get(id uint) *models.User
+}
+
+type UserService struct {
+	dao userDAO
+}
+
+// NewUserService creates a new UserService with the given user DAO.
+func NewUserService(dao userDAO) *UserService {
+	return &UserService{dao}
+}
+
+func (s *UserService) Get(id uint) *models.User {
+	return s.dao.Get(id)
+}
