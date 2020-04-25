@@ -1,7 +1,6 @@
 package daos
 
 import (
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/config"
 	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/models"
 )
 
@@ -13,22 +12,17 @@ func NewUserDAO() *UserDAO {
 	return &UserDAO{}
 }
 
-func (dao *UserDAO) Get(id uint) (*models.User, error) {
+func (dao *UserDAO) Get(id uint) *models.User {
 	var user models.User
 
 	// Query Database here...
 
-	//user = models.User{
-	//	Model: models.Model{ID: 1},
-	//	FirstName: "Martin",
-	//	LastName: "Heinz",
-	//	Address: "Not gonna tell you",
-	//	Email: "martin7.heinz@gmail.com"}
+	user = models.User{
+		Model: models.Model{ID: 1},
+		FirstName: "Martin",
+		LastName: "Heinz",
+		Address: "Not gonna tell you",
+		Email: "martin7.heinz@gmail.com"}
 
-	// if using Gorm:
-	err := config.Config.DB.Where("id = ?", id).
-		First(&user).
-		Error
-
-	return &user, err
+	return &user
 }

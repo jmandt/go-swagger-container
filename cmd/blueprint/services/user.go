@@ -3,7 +3,7 @@ package services
 import "github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/models"
 
 type userDAO interface {
-	Get(id uint) (*models.User, error)
+	Get(id uint) *models.User
 }
 
 type UserService struct {
@@ -15,6 +15,6 @@ func NewUserService(dao userDAO) *UserService {
 	return &UserService{dao}
 }
 
-func (s *UserService) Get(id uint) (*models.User, error) {
+func (s *UserService) Get(id uint) *models.User {
 	return s.dao.Get(id)
 }

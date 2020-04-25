@@ -5,19 +5,36 @@ import (
 	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/apis"
 	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/config"
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	swaggerFiles "github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
+
+	_ "github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/docs"
 )
 
+// @title Seedtrace Static Site Generator Swagger API
+// @version 1.0
+// @description Swagger API for Golang Project Blueprint.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.email martin7.heinz@gmail.com
+
+// @license.name MIT
+// @license.url https://github.com/MartinHeinz/go-project-blueprint/blob/master/LICENSE
+
+// @BasePath /api/v1
 func main() {
+	fmt.Println("Starting to configure Server settings")
 	// load application configurations
 	if err := config.LoadConfig("./config"); err != nil {
 		panic(fmt.Errorf("invalid application configuration: %s", err))
 	}
-
+	fmt.Println("Config successfully set")
 	// Creates a router without any middleware by default
 	r := gin.New()
-
+	fmt.Println("New Gin Instance created...")
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	// Global middleware
 	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
 	// By default gin.DefaultWriter = os.Stdout
@@ -27,20 +44,10 @@ func main() {
 	r.Use(gin.Recovery())
 
 	v1 := r.Group("/api/v1")
+	fmt.Println("Using API Verion: ", v1.BasePath())
 	{
 		v1.GET("/users/:id", apis.GetUser)
 	}
 
-	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
-	if config.Config.DBErr != nil {
-		panic(config.Config.DBErr)
-	}
-
-	// config.Config.DB.AutoMigrate(&models.User{}) // This is needed for generation of schema for postgres image.
-
-	defer config.Config.DB.Close()
-
-	fmt.Println(fmt.Sprintf("Successfully connected to :%v", config.Config.DSN))
-
-	r.RunTLS(fmt.Sprintf(":%v", config.Config.ServerPort), config.Config.CertFile, config.Config.KeyFile)
+	r.Run(fmt.Sprintf(":%v", config.Config.ServerPort))
 }
