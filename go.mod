@@ -1,4 +1,4 @@
-module github.com/MartinHeinz/go-project-blueprint
+module github.com/jmandt/go-swagger-container
 
 go 1.12
 

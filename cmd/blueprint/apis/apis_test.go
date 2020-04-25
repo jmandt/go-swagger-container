@@ -2,8 +2,8 @@ package apis
 
 import (
 	"bytes"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/config"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/test_data"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/config"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/test_data"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"

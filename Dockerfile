@@ -1,5 +1,7 @@
 FROM golang:1.13-alpine
 
+RUN apk update git
+
 WORKDIR /go/src/app
 
 # Copy go mod and sum files
@@ -11,8 +13,6 @@ RUN go mod download
 COPY cmd/blueprint ./
 
 COPY ./config /config
-
-RUN go build -o main .
 
 EXPOSE 8080
 

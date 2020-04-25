@@ -2,9 +2,9 @@ package apis
 
 import (
 	"fmt"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/daos"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/services"
 	"github.com/gin-gonic/gin"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/daos"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/services"
 	"log"
 	"net/http"
 	"strconv"

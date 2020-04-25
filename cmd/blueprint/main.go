@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/apis"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/config"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/apis"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/config"
 	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	swaggerFiles "github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 
-	_ "github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/docs"
+	_ "github.com/jmandt/go-swagger-container/cmd/blueprint/docs"
 )
 
 // @title Seedtrace Static Site Generator Swagger API
@@ -21,7 +21,7 @@ import (
 // @contact.email martin7.heinz@gmail.com
 
 // @license.name MIT
-// @license.url https://github.com/MartinHeinz/go-project-blueprint/blob/master/LICENSE
+// @license.url https://github.com/jmandt/go-swagger-container/blob/master/LICENSE
 
 // @BasePath /api/v1
 func main() {

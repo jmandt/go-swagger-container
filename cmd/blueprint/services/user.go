@@ -1,6 +1,6 @@
 package services
 
-import "github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/models"
+import "github.com/jmandt/go-swagger-container/cmd/blueprint/models"
 
 type userDAO interface {
 	Get(id uint) *models.User

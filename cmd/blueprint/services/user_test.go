@@ -2,7 +2,7 @@ package services
 
 import (
 	"errors"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/models"
+	"github.com/jmandt/go-swagger-container/cmd/blueprint/models"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -15,13 +15,13 @@ func TestNewUserService(t *testing.T) {
 
 func TestUserService_Get(t *testing.T) {
 	s := NewUserService(newMockUserDAO())
-	user, err := s.Get(2)
+	user := s.Get(2)
 	if assert.Nil(t, err) && assert.NotNil(t, user) {
 		assert.Equal(t, "Ben", user.FirstName)
 		assert.Equal(t, "Doe", user.LastName)
 	}
 
-	user, err = s.Get(100)
+	user = s.Get(100)
 	assert.NotNil(t, err)
 }
 
